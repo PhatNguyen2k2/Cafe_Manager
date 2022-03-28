@@ -95,6 +95,7 @@ public class Employees {
 		}
 	}
 	public void printSQL() {//read data from sql
+		v.clear();
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
