@@ -25,7 +25,7 @@ public class Employees {
 		try {
 			fileInputStream = new FileInputStream(url);
 			Scanner sc = new Scanner(fileInputStream);
-			for(int i = 0; i < 10; i++) {
+			for(int i = 0; i < 19; i++) {
 				Employee e = new Employee();
 				e.setId(sc.nextLine());
 				e.setSurname(sc.nextLine());
@@ -57,7 +57,7 @@ public class Employees {
 		try {
 			cn = DriverManager.getConnection(url);
 			System.out.print("connect success\n");
-			for(int i = 0; i < 10; i++) {
+			for(int i = 0; i < v.size(); i++) {
 			String sql = "INSERT INTO EMPLOYEE VALUES"
 					+"(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement st = cn.prepareStatement(sql);
