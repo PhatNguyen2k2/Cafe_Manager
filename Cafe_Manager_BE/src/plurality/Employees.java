@@ -1,4 +1,4 @@
-package BE;
+package plurality;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +11,8 @@ import java.sql.Statement;
 import java.util.Scanner;
 import java.util.Vector;
 
+import BE.Employee;
+
 public class Employees {
 	private Vector<Employee>v;
 	public Employees() {
@@ -18,7 +20,7 @@ public class Employees {
 		v = new Vector<Employee>();
 	}
 	public void read() {//read from file
-		String url = "D:\\eclipse\\Github\\Cafe_Manager\\Cafe_Manager_BE\\src\\BE\\employee";
+		String url = "D:\\eclipse\\Github\\Cafe_Manager\\Cafe_Manager_BE\\src\\BE\\Employee";
 		FileInputStream fileInputStream;
 		try {
 			fileInputStream = new FileInputStream(url);
@@ -49,14 +51,14 @@ public class Employees {
 			e.printStackTrace();
 		}
 	}
-	public void writeSQL() {
+	public void writeSQL() {//write data into sql
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);
 			System.out.print("connect success\n");
 			for(int i = 0; i < 10; i++) {
-			String sql = "INSERT INTO EMPLOYEE VALUES"
+			String sql = "INSERT INTO Employee VALUES"
 					+"(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement st = cn.prepareStatement(sql);
 			st.setString(1, v.elementAt(i).getId());
@@ -92,8 +94,8 @@ public class Employees {
 			v.elementAt(i).print();
 		}
 	}
-	public void printSQL() {
-		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=Example1;user=sa;password=phat12112002;encrypt=false";
+	public void printSQL() {//read data from sql
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);

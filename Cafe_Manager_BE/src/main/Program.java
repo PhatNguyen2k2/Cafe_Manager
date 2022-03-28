@@ -1,4 +1,6 @@
-package BE;
+package main;
+
+import plurality.Employees;
 
 public class Program {
 
