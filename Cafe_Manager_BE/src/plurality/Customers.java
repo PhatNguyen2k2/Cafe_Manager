@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Stack;
@@ -77,6 +79,33 @@ public class Customers {
 			cn.close();
 		} catch (SQLException e) {
 			System.out.print("oh no.");
+			e.printStackTrace();
+		}
+	}
+	public void printSQL() {//read data from sql
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+		Connection cn;
+		try {
+			cn = DriverManager.getConnection(url);
+			String sql = "SELECT * FROM CUSTOMER";
+			Statement st = cn.createStatement();
+			ResultSet result = st.executeQuery(sql);
+			while(result.next()) {
+				Customer e = new Customer();
+				e.setId(result.getString("E_id"));
+				e.setSurname(result.getString("surname"));
+				e.setName(result.getString("name"));
+				e.setGender(result.getString("gender"));
+				e.setDay(result.getInt("Bday"));
+				e.setMonth(result.getInt("Bmonth"));
+				e.setYear(result.getInt("Byear"));
+				e.setAddress(result.getString("Eaddress"));
+				e.setPhone(result.getString("phone"));
+				
+			}
+			cn.close();
+		} catch (SQLException e) {
+			System.out.println("Oh no");
 			e.printStackTrace();
 		}
 	}
