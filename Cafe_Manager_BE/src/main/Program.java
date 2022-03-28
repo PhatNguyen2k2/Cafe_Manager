@@ -1,5 +1,6 @@
 package main;
 
+import plurality.Customers;
 import plurality.Employees;
 
 public class Program {
@@ -10,6 +11,9 @@ public class Program {
 		e.writeSQL();
 		e.printSQL();
 		e.print();
+		Customers c = new Customers();
+		c.read();
+		c.writeSQL();
 	}
 
 }
