@@ -20,7 +20,7 @@ public class Employees {
 		v = new Vector<Employee>();
 	}
 	public void read() {//read from file
-		String url = "D:\\eclipse\\Github\\Cafe_Manager\\Cafe_Manager_BE\\src\\BE\\Employee";
+		String url = "D:\\eclipse\\Github\\Cafe_Manager\\Cafe_Manager_BE\\src\\input_file\\employee";
 		FileInputStream fileInputStream;
 		try {
 			fileInputStream = new FileInputStream(url);
