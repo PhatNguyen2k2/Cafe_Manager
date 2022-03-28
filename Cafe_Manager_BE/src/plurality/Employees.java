@@ -58,7 +58,7 @@ public class Employees {
 			cn = DriverManager.getConnection(url);
 			System.out.print("connect success\n");
 			for(int i = 0; i < 10; i++) {
-			String sql = "INSERT INTO Employee VALUES"
+			String sql = "INSERT INTO EMPLOYEE VALUES"
 					+"(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement st = cn.prepareStatement(sql);
 			st.setString(1, v.elementAt(i).getId());
@@ -99,7 +99,7 @@ public class Employees {
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);
-			String sql = "SELECT * FROM Employee";
+			String sql = "SELECT * FROM EMPLOYEE";
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			while(result.next()) {
