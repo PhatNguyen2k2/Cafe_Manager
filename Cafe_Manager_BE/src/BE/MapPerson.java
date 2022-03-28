@@ -13,6 +13,7 @@ public class MapPerson {
 	private String address ;
 	private String phone;
 	public MapPerson() {
+		super();
 		id = "";
 		surname="";
 		name = "";
