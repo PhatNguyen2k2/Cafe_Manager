@@ -16,8 +16,8 @@ public class Ingredient {
 		super();
 		id = "";
 		name = "";
-		amount = 0;
 		unit = "";
+		amount = 0;
 		price = 0;
 		day = 0;
 		month = 0;
@@ -82,8 +82,8 @@ public class Ingredient {
 		Scanner sc = new Scanner(System.in);
 		id = sc.nextLine();
 		name = sc.nextLine();
-		amount = sc.nextInt();
 		unit = sc.nextLine();
+		amount = sc.nextInt();
 		price = sc.nextFloat();
 		day = sc.nextInt();
 		month = sc.nextInt();
@@ -91,6 +91,6 @@ public class Ingredient {
 		inventory = sc.nextInt();
 	}
 	public void print() {
-		System.out.println("Id: "+id+", Name: "+name+", amount: "+amount+", Unit: "+unit+", Price: "+price+", Date: "+day+"/"+month+"/"+year+", Inventory: "+inventory);
+		System.out.println("Id: "+id+", Name: "+name+", Unit: "+unit+" Amount: "+amount+", Price: "+price+", Date: "+day+"/"+month+"/"+year+", Inventory: "+inventory);
 	}
 }
