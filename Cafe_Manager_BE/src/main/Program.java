@@ -14,6 +14,8 @@ public class Program {
 		Customers c = new Customers();
 		c.read();
 		c.writeSQL();
+		c.printSQL();
+		c.print();
 	}
 
 }

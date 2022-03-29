@@ -26,7 +26,7 @@ public class Customers {
 		try {
 			fileInputStream = new FileInputStream(url);
 			Scanner sc = new Scanner(fileInputStream);
-			for(int i = 0; i < 2; i++) {
+			for(int i = 0; i < 30; i++) {
 				Customer c = new Customer();
 				c.setId(sc.nextLine());
 				c.setSurname(sc.nextLine());
@@ -82,7 +82,14 @@ public class Customers {
 			e.printStackTrace();
 		}
 	}
+	public void print() {
+		for(int i = 0; i< s.size(); i++) {
+			System.out.println("-->Customer "+(i+1));
+			s.elementAt(i).print();
+		}
+	}
 	public void printSQL() {//read data from sql
+		s.clear();
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
@@ -91,17 +98,19 @@ public class Customers {
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			while(result.next()) {
-				Customer e = new Customer();
-				e.setId(result.getString("E_id"));
-				e.setSurname(result.getString("surname"));
-				e.setName(result.getString("name"));
-				e.setGender(result.getString("gender"));
-				e.setDay(result.getInt("Bday"));
-				e.setMonth(result.getInt("Bmonth"));
-				e.setYear(result.getInt("Byear"));
-				e.setAddress(result.getString("Eaddress"));
-				e.setPhone(result.getString("phone"));
-				
+				Customer c = new Customer();
+				c.setId(result.getString("C_id"));
+				c.setSurname(result.getString("surname"));
+				c.setName(result.getString("name"));
+				c.setGender(result.getString("gender"));
+				c.setDay(result.getInt("Bday"));
+				c.setMonth(result.getInt("Bmonth"));
+				c.setYear(result.getInt("Byear"));
+				c.setAddress(result.getString("Caddress"));
+				c.setPoint(result.getInt("point"));
+				c.setMember(result.getString("member"));
+				c.setPhone(result.getString("phone"));
+				s.push(c);
 			}
 			cn.close();
 		} catch (SQLException e) {
