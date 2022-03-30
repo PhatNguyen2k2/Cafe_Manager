@@ -118,6 +118,7 @@ ADD CONSTRAINT FK_BOSS2 FOREIGN KEY(I_id) REFERENCES INGREDIENT(I_id)
 --DELETE ROW
 DELETE FROM EMPLOYEE
 WHERE working_hour = 50
+DELETE FROM CUSTOMER
 --DROP TABLE
 DROP TABLE EMPLOYEE
 DROP TABLE CUSTOMER
@@ -128,12 +129,14 @@ DROP TABLE BILL
 DROP TABLE BILLSHIP
 DROP TABLE BOSS
 --QUERY
-SELECT E_id, name, gender, CONCAT(Bday,'/',Bmonth,'/',Byear) AS Birthday, Eaddress, phone, working_hour, bonus, minus, ROUND(coefficients,2,1) AS coefficients, salary, experience, position
+SELECT E_id,surname, name, gender, CONCAT(Bday,'/',Bmonth,'/',Byear) AS Birthday, Eaddress, phone, working_hour, bonus, minus, ROUND(coefficients,2,1) AS coefficients, salary, experience, position
 FROM EMPLOYEE;
 SELECT * FROM EMPLOYEE
 ORDER BY salary ASC;
 SELECT * FROM EMPLOYEE
 WHERE Eaddress LIKE 'district%'
+SELECT * FROM CUSTOMER
+WHERE Caddress LIKE 'district%'
 ORDER BY salary ASC
 SELECT * FROM CUSTOMER;
 SELECT * FROM INGREDIENT;
