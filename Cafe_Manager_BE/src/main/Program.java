@@ -2,6 +2,7 @@ package main;
 
 import plurality.Customers;
 import plurality.Employees;
+import plurality.Ingredients;
 
 public class Program {
 
@@ -16,6 +17,10 @@ public class Program {
 		c.writeSQL();
 		c.printSQL();
 		c.print();
+		Ingredients i = new Ingredients();
+		i.read();
+		i.writeSQL();
+		i.printSQL();
+		i.print();
 	}
-
 }
