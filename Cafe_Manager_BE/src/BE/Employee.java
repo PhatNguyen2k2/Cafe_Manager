@@ -10,6 +10,7 @@ public class Employee extends MapPerson{
 	private float salary;
 	private float experience;
 	private String position;
+	private String manager;
 	public Employee(){
 		super();
 		working_hour = 0;
@@ -19,6 +20,7 @@ public class Employee extends MapPerson{
 		salary = 0;
 		experience = 0;
 		position = "";
+		manager = "";
 	}
 	public void setWorking_hour(int working_hour) {
 		this.working_hour = working_hour;
@@ -62,6 +64,12 @@ public class Employee extends MapPerson{
 	public String getPosition() {
 		return position;
 	}
+	public String getManager() {
+		return manager;
+	}
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
 	public void input() {
 		super.input();
 		Scanner sc = new Scanner(System.in);
@@ -72,9 +80,10 @@ public class Employee extends MapPerson{
 		salary = sc.nextFloat();
 		experience = sc.nextFloat();
 		position = sc.next();
+		manager = sc.next();
 	}
 	public void print() {
 		super.print();
-		System.out.println("Working hour: "+working_hour+", Bonus: "+bonus+", Minus: "+minus+", Coefficients: "+coefficients+", Salary: "+salary+", Experience: "+experience+", Position: "+position);
+		System.out.println("Working hour: "+working_hour+", Bonus: "+bonus+", Minus: "+minus+", Coefficients: "+coefficients+", Salary: "+salary+", Experience: "+experience+", Position: "+position+", Manager: "+manager);
 	}
 }
