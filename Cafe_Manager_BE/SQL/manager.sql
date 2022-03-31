@@ -17,7 +17,14 @@ CREATE TABLE EMPLOYEE(
 	coefficients FLOAT,
 	salary FLOAT,
 	experience FLOAT,
-	position VARCHAR(30)
+	position VARCHAR(30),
+	manager VARCHAR(10)
+);
+
+CREATE TABLE MANAGER(
+	E_id VARCHAR(10) NOT NULL,
+	surname VARCHAR(40),
+	name VARCHAR(10)
 );
 CREATE TABLE CUSTOMER(
 	C_id VARCHAR(10) NOT NULL,
@@ -52,10 +59,6 @@ CREATE TABLE DRINKS(
 	M_id VARCHAR(10) NOT NULL,
 	I_id VARCHAR(10) NOT NULL
 )
-CREATE TABLE PAYROLL(
-	E_id VARCHAR(10) NOT NULL,
-	Esalary FLOAT
-);
 CREATE TABLE DRINK_ORDER(
 	C_id VARCHAR(10) NOT NULL,
 	M_id VARCHAR(10) NOT NULL
@@ -90,10 +93,6 @@ ALTER TABLE DRINKS
 ADD CONSTRAINT FK_DRINKS1 FOREIGN KEY(I_id) REFERENCES INGREDIENT(I_id)
 ALTER TABLE DRINKS
 ADD CONSTRAINT PK_DRINKS PRIMARY KEY (M_id,I_id)
-ALTER TABLE PAYROLL
-ADD CONSTRAINT FK_PAYROLL FOREIGN KEY(E_id) REFERENCES EMPLOYEE(E_id)
-ALTER TABLE PAYROLL
-ADD CONSTRAINT PK_PAYROLL PRIMARY KEY(E_id)
 ALTER TABLE DRINK_ORDER
 ADD CONSTRAINT FK_DO FOREIGN KEY(C_id) REFERENCES CUSTOMER(C_id)
 ALTER TABLE DRINK_ORDER
@@ -111,26 +110,45 @@ ADD CONSTRAINT PK_BILLSHIP PRIMARY KEY(BS_id)
 ALTER TABLE BILLSHIP
 ADD CONSTRAINT FK_BILLSHIP FOREIGN KEY(B_id) REFERENCES BILL(B_id)
 --Insert
-INSERT INTO PAYROLL (E_id) VALUES
-('001'),
-('002'),
-('003'),
-('004'),
-('005'),
-('006'),
-('007'),
-('008'),
-('009'),
-('010'),
-('011'),
-('012'),
-('013'),
-('014'),
-('015'),
-('016'),
-('017'),
-('018'),
-('019')
+INSERT INTO MANAGER VALUES
+('004','Bui Thi','Mien'),
+('010','Huyen Ngoc','Tran'),
+('014','Ngoc To My','Nguyen'),
+('018','Hai Duong','Tan')
+INSERT INTO DRINKS VALUES
+('001','001'),
+('001','002'),
+('002','003'),
+('002','004'),
+('003','003'),
+('003','004'),
+('003','005'),
+('004','006'),
+('004','002'),
+('005','007'),
+('005','002'),
+('006','008'),
+('006','002'),
+('007','009'),
+('008','010'),
+('009','011'),
+('009','009'),
+('010','012'),
+('011','013'),
+('012','014'),
+('013','015'),
+('014','016'),
+('015','017'),
+('016','018'),
+('017','019'),
+('018','020'),
+('018','004'),
+('019','021'),
+('019','004'),
+('020','022'),
+('020','004'),
+('021','023'),
+('021','004')
 --DELETE ROW
 DELETE FROM EMPLOYEE
 WHERE working_hour = 50
@@ -140,21 +158,56 @@ DROP TABLE EMPLOYEE
 DROP TABLE CUSTOMER
 DROP TABLE INGREDIENT
 DROP TABLE MENU
-DROP TABLE PAYROLL
+DROP TABLE DRINKS
+DROP TABLE DRINK_ORDER
 DROP TABLE BILL
 DROP TABLE BILLSHIP
 --QUERY
-SELECT E_id,surname, name, gender, CONCAT(Bday,'/',Bmonth,'/',Byear) AS Birthday, Eaddress, phone, working_hour, bonus, minus, ROUND(coefficients,2,1) AS coefficients, salary, experience, position
+SELECT E_id,surname, name, gender, CONCAT(Bday,'/',Bmonth,'/',Byear) AS Birthday, Eaddress, phone, working_hour, bonus, minus, ROUND(coefficients,2) AS coefficients, salary, experience, position, manager
 FROM EMPLOYEE;
 SELECT * FROM EMPLOYEE
 ORDER BY salary ASC;
 SELECT * FROM EMPLOYEE
 WHERE Eaddress LIKE 'district%'
-SELECT * FROM CUSTOMER
+SELECT * FROM CUSTOMERS
 WHERE Caddress LIKE 'district%'
 ORDER BY salary ASC
 SELECT * FROM CUSTOMER;
 SELECT * FROM INGREDIENT;
-SELECT P.E_id, ROUND((E.salary*E.coefficients+E.bonus-E.minus),-1) AS Esalary
-FROM PAYROLL P INNER JOIN EMPLOYEE E
-ON P.E_id = E.E_id
+SELECT * FROM MENU
+SELECT * FROM DRINKS
+--EMPLOYEE
+SELECT E_id, surname, name, position, ROUND((salary*coefficients+bonus-minus),-1) AS sum_salary
+FROM EMPLOYEE
+WHERE ROUND((salary*coefficients+bonus-minus),-1) >= 50000 AND position = 'waiter'
+ORDER BY name,surname ASC
+
+SELECT * FROM EMPLOYEE
+WHERE Eaddress LIKE '%Ho Chi Minh city'
+--CUSTOMER
+SELECT C_id, surname, name, point, member
+FROM CUSTOMER
+WHERE point >= 100
+ORDER BY name,surname ASC
+
+SELECT C_id, surname, name, point, member
+FROM CUSTOMER
+WHERE point < 100
+ORDER BY name,surname ASC
+
+SELECT * FROM CUSTOMER
+WHERE Caddress LIKE '%Ho Chi Minh city' AND point >= 100
+ORDER BY name,surname ASC
+--INGREDIENT
+SELECT * FROM INGREDIENT
+WHERE inventory <= 2
+ORDER BY name ASC
+
+SELECT * FROM INGREDIENT
+WHERE unit = 'thung'
+ORDER BY name ASC
+
+--MENU
+SELECT * FROM MENU
+WHERE price >= 30000
+ORDER BY name ASC
