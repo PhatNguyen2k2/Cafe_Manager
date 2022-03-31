@@ -5,6 +5,7 @@ male
 Binh Thanh, Ho Chi Minh city
 0321526498
 bartender
+004
 12 2 2000
 50
 20000
@@ -19,6 +20,7 @@ female
 District 5, Ho Chi Minh city
 0319875648
 waiter
+010
 23 1 2001
 30
 15000
@@ -33,6 +35,7 @@ male
 District 9, Ho Chi Minh city
 0913840311
 guard
+014
 20 2 2000
 41
 12000
@@ -46,7 +49,8 @@ Mien
 female
 Bien Hoa, Dong Nai
 0973179213
-manage
+manager
+004
 23 3 1998
 30
 11000
@@ -61,6 +65,7 @@ male
 District 4, Ho Chi Minh city
 0908384713
 waiter
+010
 12 5 1999
 65
 17000
@@ -75,6 +80,7 @@ male
 Binh Tan, Ho Chi Minh city
 09712742935
 bartender
+004
 01 6 2001
 72
 20000
@@ -89,6 +95,7 @@ female
 Di An, Binh Duong
 0280841832
 waiter
+018
 29 9 2002
 53
 4000
@@ -103,6 +110,7 @@ female
 Long Binh, Thu Duc city, Ho Chi Minh city
 0814214573
 bartender
+004
 15 8 1997
 40
 30000
@@ -117,6 +125,7 @@ male
 Nha Be, Ho Chi Minh city
 0573472125
 waiter
+018
 26 5 2003
 12
 34000
@@ -131,6 +140,7 @@ female
 Go Vap, Ho Chi Minh city
 0917469822
 manager
+010
 16 4 2002
 64
 52000
@@ -145,6 +155,7 @@ female
 Go Vap, Ho Chi Minh city
 0401842318
 waiter
+010
 09 12 2003
 35
 45000
@@ -159,6 +170,7 @@ male
 Cau Giay, Ha Noi capital
 0214245578
 bartender
+004
 18 11 1987
 19
 5000
@@ -173,6 +185,7 @@ male
 Binh Son, Quang Ngai province
 0475341382
 guard
+014
 21 9 2000
 27
 23000
@@ -186,7 +199,8 @@ Nguyen
 female
 Long Xuyen, An Giang province
 0974134739
-waiter
+manager
+014
 13 2 2001
 46 
 25000
@@ -201,6 +215,7 @@ female
 Vung Tau city
 0798321457
 waiter
+018
 04 06 2002
 35
 19000
@@ -215,6 +230,7 @@ male
 Thu Duc city, Ho Chi Minh city
 0914729135
 guard
+014
 16 01 1999
 40 
 40000
@@ -229,6 +245,7 @@ female
 Cau Ke, Tra Vinh province
 0809321485
 waiter
+018
 02 11 2001
 33
 21000
@@ -243,6 +260,7 @@ male
 Rach Gia, Kien Giang province
 0917428798
 manager
+018
 15 07 2003
 26
 31000
@@ -257,6 +275,7 @@ female
 District 3, Ho Chi Minh city
 0804321742
 bartender
+004
 12 06 2002
 32
 10000
