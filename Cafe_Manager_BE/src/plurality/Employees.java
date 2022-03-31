@@ -34,6 +34,7 @@ public class Employees {
 				e.setAddress(sc.nextLine());
 				e.setPhone(sc.nextLine());
 				e.setPosition(sc.nextLine());
+				e.setManager(sc.nextLine());
 				e.setDay(sc.nextInt());
 				e.setMonth(sc.nextInt());
 				e.setYear(sc.nextInt());
@@ -59,7 +60,7 @@ public class Employees {
 			System.out.print("connect success\n");
 			for(int i = 0; i < v.size(); i++) {
 			String sql = "INSERT INTO EMPLOYEE VALUES"
-					+"(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+"(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement st = cn.prepareStatement(sql);
 			st.setString(1, v.elementAt(i).getId());
 			st.setString(2, v.elementAt(i).getSurname());
@@ -77,6 +78,7 @@ public class Employees {
 			st.setFloat(14, v.elementAt(i).getSalary());
 			st.setFloat(15, v.elementAt(i).getExperience());
 			st.setString(16, v.elementAt(i).getPosition());
+			st.setString(17, v.elementAt(i).getManager());
 			int rows = st.executeUpdate();
 				if(rows > 0) {
 					System.out.print("row has been inserted\n");
@@ -121,6 +123,7 @@ public class Employees {
 				e.setSalary(result.getFloat("salary"));
 				e.setExperience(result.getFloat("experience"));
 				e.setPosition(result.getString("position"));
+				e.setManager(result.getString("manager"));
 				v.add(e);
 			}
 			cn.close();
