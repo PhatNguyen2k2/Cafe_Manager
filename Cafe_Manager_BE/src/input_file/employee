@@ -32,7 +32,7 @@ waiter
 Tran Tien
 Dung
 male
-District 9, Ho Chi Minh city
+Long Thanh My, Thu Duc city, Ho Chi Minh city
 0913840311
 guard
 014
@@ -47,7 +47,7 @@ guard
 Bui Thi
 Mien
 female
-Bien Hoa, Dong Nai
+Bien Hoa city, Dong Nai
 0973179213
 manager
 004
@@ -149,8 +149,8 @@ manager
 100000
 2
 011
-Hai My
-Pham
+Pham Hai
+My
 female
 Go Vap, Ho Chi Minh city
 0401842318
@@ -164,8 +164,8 @@ waiter
 300000
 7
 012
-Quoc Dai
-Duong
+Duong Quoc
+Dai
 male
 Cau Giay, Ha Noi capital
 0214245578
@@ -179,8 +179,8 @@ bartender
 20000
 1
 013
-Minh Son
-Tra
+Tra Minh
+Son
 male
 Binh Son, Quang Ngai province
 0475341382
@@ -194,8 +194,8 @@ guard
 113000
 5
 014
-Ngoc To My
-Nguyen
+Nguyen Ngoc To
+My
 female
 Long Xuyen, An Giang province
 0974134739
@@ -209,8 +209,8 @@ manager
 120000
 3
 015
-Thi Thanh
-Lu
+Le Thi
+Thanh
 female
 Vung Tau city
 0798321457
@@ -224,10 +224,10 @@ waiter
 100000
 2
 016
-The Vinh
-Luong
+Luong The
+Vinh
 male
-Thu Duc city, Ho Chi Minh city
+Linh Trung, Thu Duc city, Ho Chi Minh city
 0914729135
 guard
 014
@@ -239,8 +239,8 @@ guard
 80000
 7
 017
-My Tuyen
-Ho
+Ho My
+Tuyen
 female
 Cau Ke, Tra Vinh province
 0809321485
@@ -254,8 +254,8 @@ waiter
 170000
 5
 018
-Hai Duong
-Tan
+Nguyen Hai
+Duong
 male
 Rach Gia, Kien Giang province
 0917428798
@@ -269,8 +269,8 @@ manager
 120000
 3
 019
-My Ngoc
-Kieu
+Kieu My
+Ngoc
 female
 District 3, Ho Chi Minh city
 0804321742
