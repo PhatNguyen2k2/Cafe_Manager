@@ -18,7 +18,7 @@ public class Ingredients {
 	private Queue<Ingredient> q;
 	public Ingredients() {
 		super();
-		q = new LinkedList<Ingredient>();//hang doi uu tien
+		q = new LinkedList<Ingredient>();//danh sach lien ket
 	}
 	public void read() {//read from file
 		String url = "D:\\eclipse\\Github\\Cafe_Manager\\Cafe_Manager_BE\\src\\input_file\\ingredient";

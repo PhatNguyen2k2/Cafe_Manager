@@ -1,8 +1,10 @@
 package main;
 
 import plurality.Customers;
+import plurality.Drinks_Orders;
 import plurality.Employees;
 import plurality.Ingredients;
+import plurality.Menu;
 
 public class Program {
 
@@ -22,5 +24,13 @@ public class Program {
 		i.writeSQL();
 		i.printSQL();
 		i.print();
+		Menu m = new Menu();
+		m.read();
+		m.writeSQL();
+		m.printSQL();
+		m.print();
+		Drinks_Orders d = new Drinks_Orders();
+		d.read();
+		d.writeSQL();
 	}
 }
