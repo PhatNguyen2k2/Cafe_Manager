@@ -118,4 +118,7 @@ public class Customers {
 			e.printStackTrace();
 		}
 	}
+	public void push(Customer c) {
+		s.push(c);
+	}
 }
