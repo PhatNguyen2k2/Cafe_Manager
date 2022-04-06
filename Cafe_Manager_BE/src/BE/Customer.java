@@ -32,4 +32,7 @@ public class Customer extends MapPerson{
 	public String getMember() {
 		return member;
 	}
+	public int plusPoint(Customer c, int point) {
+		return c.getPoint()+point;
+	}
 }
