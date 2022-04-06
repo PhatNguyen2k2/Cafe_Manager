@@ -8,6 +8,7 @@ public class Bill {
 	private int minute;
 	private String C_id;
 	private String E_id;
+	private String name;
 	private float price;
 	public Bill() {
 		super();
@@ -16,6 +17,7 @@ public class Bill {
 		minute = 0;
 		C_id = "";
 		E_id = "";
+		name = "";
 		price = 0;
 	}
 	public String getId() {
@@ -48,6 +50,12 @@ public class Bill {
 	public void setE_id(String e_id) {
 		E_id = e_id;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public float getPrice() {
 		return price;
 	}
@@ -63,6 +71,6 @@ public class Bill {
 		minute = sc.nextInt();
 	}
 	public void print() {
-		System.out.println("Id: "+id+", "+hour+"h"+minute+", C_id: "+C_id+", E_id: "+E_id+", Price: "+price);
+		System.out.println("Id: "+id+", C_id: "+C_id+hour+"h"+minute+", Name: "+name+", Price: "+price);
 	}
 }
