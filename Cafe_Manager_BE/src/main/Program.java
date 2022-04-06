@@ -1,5 +1,6 @@
 package main;
 
+import plurality.Bills;
 import plurality.Customers;
 import plurality.Drinks_Orders;
 import plurality.Employees;
@@ -32,5 +33,10 @@ public class Program {
 		Drinks_Orders d = new Drinks_Orders();
 		d.read();
 		d.writeSQL();
+		Bills b = new Bills();
+		b.read();
+		b.writeSQL();
+		b.printSQL();
+		b.print();
 	}
 }
