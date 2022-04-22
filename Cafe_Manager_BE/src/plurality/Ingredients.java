@@ -90,6 +90,7 @@ public class Ingredients {
 		try {
 			cn = DriverManager.getConnection(url);
 			String sql = "SELECT * FROM INGREDIENT";
+			
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			while(result.next()) {
