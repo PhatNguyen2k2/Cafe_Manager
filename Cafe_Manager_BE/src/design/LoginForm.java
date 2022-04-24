@@ -237,8 +237,8 @@ public class LoginForm extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         // GET DATA INPUT
-    	Accounts ac = new Accounts();
-    	ac.printSQL();
+    	Accounts a = new Accounts();
+    	a.printSQL();
         String username = txtUser.getText();
         String password = new String(txtPassword.getPassword());
         //USE OBJECT TO DECLARE
@@ -255,7 +255,7 @@ public class LoginForm extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(ac.check(username, password) && count < 3){
+        if(a.check(username, password) && count < 3){
             JOptionPane.showMessageDialog(this, "Login successfully");
         } else if (count != 3){
             JOptionPane.showMessageDialog(this, "Invalid username or password, denied " + count,"Failure",JOptionPane.ERROR_MESSAGE);

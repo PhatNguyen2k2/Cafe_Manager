@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import BE.Drinks;
@@ -90,5 +91,8 @@ public class Menu  {
 			System.out.println("Oh no");
 			e.printStackTrace();
 		}
+	}
+	public Iterator<Drinks> iterator() {
+		return ar.iterator();
 	}
 }

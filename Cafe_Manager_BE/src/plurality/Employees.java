@@ -133,4 +133,8 @@ public class Employees {
 			e.printStackTrace();
 		}
 	}
+	public Employee elementAt(int i) {
+		return v.elementAt(i);
+		
+	}
 }
