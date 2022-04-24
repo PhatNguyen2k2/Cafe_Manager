@@ -26,11 +26,11 @@ public class Program {
 //		i.writeSQL();
 //		i.printSQL();
 //		i.print();
-//		Menu m = new Menu();
+		Menu m = new Menu();
 //		m.read();
 //		m.writeSQL();
-//		m.printSQL();
-//		m.print();
+		m.printSQL();
+		m.print();
 //		Drinks_Orders d = new Drinks_Orders();
 //		d.read();
 //		d.writeSQL();
@@ -39,8 +39,8 @@ public class Program {
 //		b.writeSQL();
 //		b.printSQL();
 //		b.print();
-		Accounts ac = new Accounts();
-		ac.printSQL();
-		ac.print();
+//		Accounts ac = new Accounts();
+//		ac.printSQL();
+//		ac.print();
 	}
 }

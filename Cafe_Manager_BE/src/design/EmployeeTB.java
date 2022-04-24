@@ -4,6 +4,7 @@ import design.LoginForm;
 import plurality.Menu;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,16 +13,19 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 import BE.Drinks;
 
 public class EmployeeTB extends javax.swing.JFrame {
-
+	DefaultTableModel tblModel;
     public EmployeeTB() {
         initComponents();
         //get real date
         dateRealTime();
         times();
+        initTable();
+        loadMenu();
     }
     //create method get real date
     public void dateRealTime(){
@@ -239,49 +243,7 @@ public class EmployeeTB extends javax.swing.JFrame {
                     .addComponent(lbTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
-        Menu m = new Menu();
-        m.printSQL();//read data from sql
-        Iterator<Drinks> it = m.iterator();
-        int j = 1;
-        tbMenu.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-//                {null, "", null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null},
-//                {null, null, null, null, null}
-            	while(it.hasNext()) {
-            		{j++, it.next().getId(), it.next().getName(), it.next().getPrice(), null}
-            	}
-            },
-            new String [] {
-                "STT", "ID", "Name", "Price", "Number "
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        
         tbMenu.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,12));
         tbMenu.getTableHeader().setBackground(new Color(32,136,203));
         tbMenu.getTableHeader().setForeground(new Color(0,0,0));
@@ -328,7 +290,27 @@ public class EmployeeTB extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-
+    private void initTable() {
+    	tblModel = new DefaultTableModel();
+    	tblModel.setColumnIdentifiers(new String[] {"STT","Id","Name","Price","Amount"});
+    	tbMenu.setModel(tblModel);
+    }
+    private void loadMenu() {
+    	Menu m = new Menu();
+    	m.printSQL();//read data from sql
+    	Iterator<Drinks> it = m.iterator();
+    	int j = 1;
+    	tblModel.setRowCount(0);
+    	while(it.hasNext()) {
+    		Drinks d = new Drinks();
+    		d = it.next();
+    		Object[] row = new Object[] {
+    				j++,d.getId(),d.getName(),d.getPrice()
+    		};
+    		tblModel.addRow(row);
+    	}
+    	tblModel.fireTableDataChanged();
+    }
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
