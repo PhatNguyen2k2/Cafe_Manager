@@ -13,9 +13,10 @@ import java.util.Scanner;
 import java.util.Stack;
 
 import BE.Customer;
+import design.EmployeeTB;
 
 public class Customers {
-	private Stack<Customer>s;
+	private static Stack<Customer>s;
 	public Customers() {
 		super();
 		s = new Stack<Customer>();
@@ -82,23 +83,42 @@ public class Customers {
 			e.printStackTrace();
 		}
 	}
+	public static void writeidSQL(String id) {
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+		Connection cn;
+			try {
+				cn = DriverManager.getConnection(url);
+				System.out.print("connect success\n");
+				String sql = "INSERT INTO CUSTOMER (C_id) VALUES (?)";
+				PreparedStatement st = cn.prepareStatement(sql);
+				st.setString(1, id);
+				int rows = st.executeUpdate();
+				if(rows > 0) {
+					System.out.print("row has been inserted\n");
+				}
+				cn.close();
+			} catch (SQLException e) {
+				System.out.print("oh no.");
+				e.printStackTrace();
+			}
+	}
 	public void print() {
 		for(int i = 0; i< s.size(); i++) {
 			System.out.println("-->Customer "+(i+1));
 			s.elementAt(i).print();
 		}
 	}
-	public void printSQL() {//read data from sql
+	public static Customer printSQL(String phone) {//read data from sql
 		s.clear();
+		Customer c = new Customer();
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);
-			String sql = "SELECT * FROM CUSTOMER";
+			String sql = "SELECT TOP 1 * FROM CUSTOMER WHERE phone = '"+phone+"' ORDER BY C_id DESC";
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			while(result.next()) {
-				Customer c = new Customer();
 				c.setId(result.getString("C_id"));
 				c.setSurname(result.getString("surname"));
 				c.setName(result.getString("name"));
@@ -107,8 +127,10 @@ public class Customers {
 				c.setMonth(result.getInt("Bmonth"));
 				c.setYear(result.getInt("Byear"));
 				c.setAddress(result.getString("Caddress"));
-				c.setPoint(result.getInt("point"));
-				c.setMember(result.getString("member"));
+				EmployeeTB.pointM = result.getInt("point");
+				c.setPoint(EmployeeTB.pointM);
+				EmployeeTB.memberM = result.getString("member");
+				c.setMember(EmployeeTB.memberM);
 				c.setPhone(result.getString("phone"));
 				s.push(c);
 			}
@@ -117,6 +139,76 @@ public class Customers {
 			System.out.println("Oh no");
 			e.printStackTrace();
 		}
+		return c;
+	}
+	public static void updateCustomer(String id, Customer c) {
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+		Connection cn;
+			try {
+				cn = DriverManager.getConnection(url);
+				String sql = "UPDATE CUSTOMER SET surname=?,name =?,gender=?,Bday=?,Bmonth=?,Byear=?,Caddress=?,point=?,member=?,phone=? WHERE C_id = '"+id+"'";
+				PreparedStatement st = cn.prepareStatement(sql);
+				st.setString(1, c.getSurname());
+				st.setString(2, c.getName());
+				st.setString(3, c.getGender());
+				st.setInt(4, c.getDay());
+				st.setInt(5, c.getMonth());
+				st.setInt(6, c.getYear());
+				st.setString(7, c.getAddress());
+				st.setInt(8, c.getPoint());
+				st.setString(9, c.getMember());
+				st.setString(10, c.getPhone());
+				int rows = st.executeUpdate();
+				if(rows > 0) {
+					System.out.print("row has been updated\n");
+				}
+				cn.close();
+			} catch (SQLException e) {
+				System.out.print("oh no.");
+				e.printStackTrace();
+			}
+	}
+//	public static String getBottomPhone(String phone) {
+//		if(phone.equals("")) {
+//			return "NULL";
+//		}
+//		String member = "";
+//		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+//		Connection cn;
+//		try {
+//			cn = DriverManager.getConnection(url);
+//			String sql = "SELECT TOP 1 member FROM CUSTOMER WHERE phone = '"+phone+"' ORDER BY C_id DESC";
+//			Statement st = cn.createStatement();
+//			ResultSet result = st.executeQuery(sql);
+//			while(result.next()) {
+//				member = result.getString("member");
+//			}
+//			cn.close();
+//		} catch (SQLException e) {
+//			System.out.println("Oh no");
+//			e.printStackTrace();
+//		}
+//		return member;
+//	}
+	
+	public String getBottomId() { //get bottom id from sql
+		String id = "";
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+		Connection cn;
+		try {
+			cn = DriverManager.getConnection(url);
+			String sql = "SELECT TOP 1 C_id FROM CUSTOMER ORDER BY C_id DESC";
+			Statement st = cn.createStatement();
+			ResultSet result = st.executeQuery(sql);
+			while(result.next()) {
+				id = result.getString("C_id");
+			}
+			cn.close();
+		} catch (SQLException e) {
+			System.out.println("Oh no");
+			e.printStackTrace();
+		}
+		return id;
 	}
 	public void push(Customer c) {
 		s.push(c);

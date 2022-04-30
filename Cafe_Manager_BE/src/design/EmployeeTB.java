@@ -1,31 +1,57 @@
 package design;
 
-import design.LoginForm;
+import plurality.Accounts;
+import plurality.Bills;
+import plurality.Customers;
+import plurality.Drinks_Orders;
 import plurality.Menu;
+import plurality.Numdata;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFrame;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
+import BE.Amount;
+import BE.Customer;
 import BE.Drinks;
 
+@SuppressWarnings("serial")
 public class EmployeeTB extends javax.swing.JFrame {
-	DefaultTableModel tblModel;
+	public static String Bid;
+	public static String Cid;
+	public static String Eid;
+	public static String Ename;
+	public static String phoneC;
+	public static float discountM;
+	public static String memberM;
+	public static int pointM;
+	public static DefaultTableModel tblModel;
     public EmployeeTB() {
         initComponents();
+        textField.setText("");
         //get real date
         dateRealTime();
         times();
         initTable();
         loadMenu();
+        getData4Mn();
+        getData4Bill();
     }
     //create method get real date
     public void dateRealTime(){
@@ -201,48 +227,60 @@ public class EmployeeTB extends javax.swing.JFrame {
         lbDate.setText("jLabel10");
 
         lbTime.setText("jLabel10");
+        
+        textField = new JTextField();
+        textField.setColumns(10);
+        
+        JLabel lblNewLabel = new JLabel("Phone number:");
+        lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                    .addComponent(jTextField6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbDate, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                    .addComponent(lbTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22))
+        	jPanel3Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(jPanel3Layout.createSequentialGroup()
+        			.addGap(27)
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jLabel6)
+        				.addComponent(jLabel7))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(jTextField5, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+        				.addComponent(jTextField6))
+        			.addGap(49)
+        			.addComponent(lblNewLabel)
+        			.addGap(18)
+        			.addComponent(textField, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jLabel9)
+        				.addComponent(jLabel8))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(lbDate, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+        				.addComponent(lbTime, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addGap(22))
         );
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel9)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lbTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
+        	jPanel3Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(jPanel3Layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel6)
+        				.addComponent(jLabel8)
+        				.addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lbDate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(textField, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING, false)
+        				.addGroup(jPanel3Layout.createParallelGroup(Alignment.BASELINE)
+        					.addComponent(jLabel7)
+        					.addComponent(jLabel9)
+        					.addComponent(jTextField6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(lbTime, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addGap(10))
         );
+        jPanel3.setLayout(jPanel3Layout);
         
         tbMenu.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,12));
         tbMenu.getTableHeader().setBackground(new Color(32,136,203));
@@ -279,8 +317,15 @@ public class EmployeeTB extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
+    public void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
         // TODO add your handling code here:
+    	Drinks_Orders.writeSQL();
+    	Bills.writeSQL(Bid,Cid,Eid);
+    	phoneC = textField.getText();
+    	Customers.printSQL(phoneC);
+    	discountM = Customer.checkMember(memberM);
+    	new Bill_v2().setVisible(true);
+    	this.setVisible(false);
     }//GEN-LAST:event_btnOrderActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -295,7 +340,7 @@ public class EmployeeTB extends javax.swing.JFrame {
     	tblModel.setColumnIdentifiers(new String[] {"STT","Id","Name","Price","Amount"});
     	tbMenu.setModel(tblModel);
     }
-    private void loadMenu() {
+    public void loadMenu() {
     	Menu m = new Menu();
     	m.printSQL();//read data from sql
     	Iterator<Drinks> it = m.iterator();
@@ -305,11 +350,44 @@ public class EmployeeTB extends javax.swing.JFrame {
     		Drinks d = new Drinks();
     		d = it.next();
     		Object[] row = new Object[] {
-    				j++,d.getId(),d.getName(),d.getPrice()
+    				j++,d.getId(),d.getName(),d.getPrice(), 0
     		};
     		tblModel.addRow(row);
     	}
     	tblModel.fireTableDataChanged();
+    }
+    public static Numdata getData() {//get data from menu
+    	Numdata n = new Numdata();
+    	for(int i = 0; i < tblModel.getRowCount(); i++) {
+    		Amount x = new Amount();
+    		x.id = tblModel.getValueAt(i, 1).toString();
+    		x.number = Integer.parseInt(tblModel.getValueAt(i, 4).toString());
+    		if(x.number != 0)
+    			n.add(x);
+    	}
+    	return n;
+    }
+    public void getData4Mn() {
+    	Accounts ac = new Accounts();
+    	ac.printSQL(LoginForm.usernameM);
+    		Eid = ac.elementAt(0).getE_id();
+    		jTextField1.setText(Eid);
+    		Ename = ac.printNameSQL(LoginForm.usernameM);
+    		jTextField2.setText(Ename);
+    		jTextField3.setText(ac.elementAt(0).getUsername());
+    }
+    @SuppressWarnings("static-access")
+	public void getData4Bill() {
+    	Bills b = new Bills();
+    	Bid = b.getBottomId();
+    	int ib = Integer.parseInt(Bid);
+    	Bid = "0"+Bid.valueOf(++ib);
+    	jTextField5.setText(Bid);
+    	Customers c = new Customers();
+    	Cid = c.getBottomId();
+    	ib = Integer.parseInt(Cid);
+    	Cid = "0"+Cid.valueOf(++ib);
+    	jTextField6.setText(Cid);
     }
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -343,5 +421,5 @@ public class EmployeeTB extends javax.swing.JFrame {
     private javax.swing.JLabel lbDate;
     private javax.swing.JLabel lbTime;
     private javax.swing.JTable tbMenu;
-    // End of variables declaration//GEN-END:variables
+    private JTextField textField;
 }

@@ -9,7 +9,8 @@ public class Bill {
 	private String C_id;
 	private String E_id;
 	private String name;
-	private float price;
+	private String price;
+	private int amount;
 	public Bill() {
 		super();
 		id = "";
@@ -18,7 +19,8 @@ public class Bill {
 		C_id = "";
 		E_id = "";
 		name = "";
-		price = 0;
+		price = "";
+		amount = 0;
 	}
 	public String getId() {
 		return id;
@@ -56,11 +58,17 @@ public class Bill {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public float getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 	public void input() {
 		Scanner sc = new Scanner(System.in);

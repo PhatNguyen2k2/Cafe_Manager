@@ -170,17 +170,21 @@ INSERT INTO DRINKS VALUES
 ('020','004'),
 ('021','023'),
 ('021','004')
-INSERT INTO DRINK_ORDER (M_id,amount) VALUES
-('002',3),
-('007',2),
-('015',1),
-('021',4)
+INSERT INTO CUSTOMER(C_id)VALUES
+('031')
 --DELETE ROW
 DELETE FROM EMPLOYEE
-WHERE working_hour = 50
+DELETE FROM BILL
+WHERE C_id = '031'
+DELETE FROM DRINK_ORDER
+WHERE C_id = '031'
+DELETE FROM CUSTOMER
+WHERE C_id = '031'
 DELETE FROM CUSTOMER
 DELETE FROM DRINKS
 DELETE FROM MANAGER
+--UPDATE TABLE
+UPDATE CUSTOMER SET surname=?,name =?,gender=?,Bday=?,Bmonth=?,Byear=?,Caddress=?,point=?,member=?,phone=? WHERE C_id = '001'
 --DROP TABLE
 DROP TABLE EMPLOYEE
 DROP TABLE MANAGER
@@ -222,7 +226,7 @@ SELECT E.* FROM EMPLOYEE E INNER JOIN MANAGER M
 ON E.manager = M.E_id
 WHERE M.name = 'Tran' OR M.name = 'Duong'
 ORDER BY E.name ASC
-
+--CUSTOMER
 SELECT C_id, surname, name, point, member
 FROM CUSTOMER
 WHERE point >= 100
@@ -236,6 +240,17 @@ ORDER BY name,surname ASC
 SELECT * FROM CUSTOMER
 WHERE Caddress LIKE '%Ho Chi Minh city' AND point >= 100
 ORDER BY name,surname ASC
+
+SELECT TOP 1 C_id
+FROM CUSTOMER
+ORDER BY C_id DESC
+
+SELECT TOP 1 member
+FROM CUSTOMER
+WHERE phone = '0123656666'
+ORDER BY C_id DESC
+--ACCOUNT
+SELECT (E.surname + ' ' +E.name) AS Name FROM ACCOUNT A, EMPLOYEE E WHERE A.E_id = E.E_id AND A.username LIKE 'mn004'
 --INGREDIENT
 SELECT * FROM INGREDIENT
 WHERE inventory <= 2
@@ -264,6 +279,11 @@ SELECT * FROM MENU
 WHERE price >= 30000
 ORDER BY name ASC
 --BILL
+--Get bottom row
+SELECT TOP 1 B_id
+FROM BILL
+ORDER BY B_id DESC
+
 SELECT DISTINCT B.B_id,B.E_id, B.Bhour, B.Bminute, 
 	(SELECT M.name + ':'+ STR(M.price,6,2)+ 'VND Amount: '+STR(DO1.amount,2,2)+ CHAR(13)+ CHAR(10) 
 		FROM MENU M INNER JOIN DRINK_ORDER DO1 
@@ -285,3 +305,15 @@ SELECT DISTINCT B.B_id,B.E_id, B.Bhour, B.Bminute,
 FROM BILL B INNER JOIN DRINK_ORDER DO 
 ON B.C_id = DO.C_id 
 GROUP BY B.B_id, B.E_id, B.Bhour, B.Bminute, DO.C_id
+
+SELECT M.name, DO.amount,(STR(M.price,6,2)+ ' VND') AS price
+FROM BILL B, DRINK_ORDER DO, MENU M
+WHERE B.C_id = DO.C_id AND DO.M_id = M.M_id AND B.C_id = '006'
+
+SELECT SUM(DO.amount) AS plusPoint FROM BILL B, DRINK_ORDER DO 
+WHERE B.C_id = DO.C_id  AND B.C_id = '006' 
+GROUP BY B.B_id, B.E_id, DO.C_id 
+
+SELECT SUM(M.price*DO.amount) AS Total FROM BILL B, DRINK_ORDER DO, MENU M
+WHERE B.C_id = DO.C_id AND DO.M_id = M.M_id AND B.C_id = '006' 
+GROUP BY B.B_id, B.E_id, DO.C_id

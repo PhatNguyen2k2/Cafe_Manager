@@ -32,7 +32,30 @@ public class Customer extends MapPerson{
 	public String getMember() {
 		return member;
 	}
-	public int plusPoint(Customer c, int point) {
-		return c.getPoint()+point;
+	public static float checkMember(String member) {
+		float discount = 0;
+		if(member.equals("gold"))
+			discount = (float) 0.1;
+		else if (member.equals("silver"))
+			discount = (float) 0.09;
+		else if(member.equals("bronze"))
+			discount = (float) 0.07;
+		else if(member.equals("loyal"))
+			discount = (float) 0.05;
+		else discount = 0;
+		return discount;
+	}
+	public static String checkPoint(int point) {
+		String member = "";
+		if(point >= 500)
+			member = "gold";
+		else if(point >= 250)
+			member = "silver";
+		else if(point >= 100)
+			member = "bronze";
+		else if(point >= 50)
+			member = "loyal";
+		else return "normal";
+		return member;
 	}
 }

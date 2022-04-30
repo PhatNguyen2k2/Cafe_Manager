@@ -12,14 +12,16 @@ import javax.swing.JTextField;
 
 import plurality.Accounts;
 
-public class LoginForm extends javax.swing.JFrame {
 
+public class LoginForm extends javax.swing.JFrame {
+	public static String usernameM;
     /**
      * Creates new form LoginForm
      */
     int count = 1; //limit the attempt login 
     public LoginForm() {
         initComponents();
+        
     }
 
     /**
@@ -238,7 +240,7 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         // GET DATA INPUT
     	Accounts a = new Accounts();
-    	a.printSQL();
+    	a.printSQL("mn%");
         String username = txtUser.getText();
         String password = new String(txtPassword.getPassword());
         //USE OBJECT TO DECLARE
@@ -257,6 +259,10 @@ public class LoginForm extends javax.swing.JFrame {
         }
         if(a.check(username, password) && count < 3){
             JOptionPane.showMessageDialog(this, "Login successfully");
+            usernameM = username;
+            new EmployeeTB().setVisible(true);
+            //new Test().setVisible(true);
+            this.setVisible(false);
         } else if (count != 3){
             JOptionPane.showMessageDialog(this, "Invalid username or password, denied " + count,"Failure",JOptionPane.ERROR_MESSAGE);
         } else {

@@ -6,10 +6,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Vector;
 
+import BE.Amount;
 import BE.Drinks_Order;
+import design.EmployeeTB;
 
 public class Drinks_Orders {
 	private Vector<Drinks_Order> v;
@@ -35,23 +38,28 @@ public class Drinks_Orders {
 			e.printStackTrace();
 		}
 	}
-	public void writeSQL() {//write data into sql
+	public static void writeSQL() {//write data into sql
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);
 			System.out.print("connect success\n");
-			for(int i = 0; i < v.size(); i++) {
-			String sql = "INSERT INTO DRINK_ORDER VALUES"
-					+"(?,?,?)";
-			PreparedStatement st = cn.prepareStatement(sql);
-			st.setString(1, v.elementAt(i).getC_id());
-			st.setString(2, v.elementAt(i).getM_id());
-			st.setInt(3, v.elementAt(i).getAmount());
-			int rows = st.executeUpdate();
-				if(rows > 0) {
-					System.out.print("row has been inserted\n");
-				}
+			Numdata n = new Numdata();
+			n = EmployeeTB.getData();
+			Customers.writeidSQL(EmployeeTB.Cid);
+			Iterator<Amount> it = n.iterator();
+			while(it.hasNext()) {
+				Amount a = it.next();
+				String sql = "INSERT INTO DRINK_ORDER VALUES"
+						+"(?,?,?)";
+				PreparedStatement st = cn.prepareStatement(sql);
+				st.setString(1, EmployeeTB.Cid);
+				st.setString(2, a.id);
+				st.setInt(3, a.number);
+				int rows = st.executeUpdate();
+					if(rows > 0) {
+						System.out.print("row has been inserted\n");
+					}
 			}
 			cn.close();
 		} catch (SQLException e) {
@@ -59,5 +67,4 @@ public class Drinks_Orders {
 			e.printStackTrace();
 		}
 	}
-	
 }

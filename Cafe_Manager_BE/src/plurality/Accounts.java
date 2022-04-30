@@ -5,48 +5,68 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 import BE.Account;
 
 public class Accounts {
-	private Account[] ac;
+	private Vector<Account> ac;
 
 	public Accounts() {
 		super();
-		ac = new Account[4];
+		ac = new Vector<Account>();
 	}
-	public void printSQL() {//read data from sql
+	public void printSQL(String user) {//read data from sql with username
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);
-			String sql = "SELECT * FROM ACCOUNT";
+			String sql = "SELECT * FROM ACCOUNT WHERE username LIKE '"+user+"'";
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery(sql);
-			int i = 0;
 			while(result.next()) {
 				Account a = new Account();
 				a.setUsername(result.getString("username"));
 				a.setPasswords(result.getString("passwords"));
 				a.setE_id(result.getString("E_id"));
-				ac[i] = a;
-				i++;
+				ac.add(a);
 			}
 		} catch (SQLException e) {
 			System.out.println("Oh no");
 			e.printStackTrace();
 		}
 	}
+	public String printNameSQL(String user) { //read name of account in SQL
+		String name = "";
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+		Connection cn;
+		try {
+			cn = DriverManager.getConnection(url);
+			String sql = "SELECT (E.surname + ' ' +E.name) AS Name FROM ACCOUNT A, EMPLOYEE E WHERE A.E_id = E.E_id AND A.username = '"+user+"'";
+			Statement st = cn.createStatement();
+			ResultSet result = st.executeQuery(sql);
+			while(result.next()) {
+				name = result.getString("Name");
+			}
+		} catch (SQLException e) {
+			System.out.println("Oh no");
+			e.printStackTrace();
+		}
+		return name;
+	}
 	public boolean check(String user, String pass) {
 		for(int i = 0; i < 4; i++) {
-			if(ac[i].getUsername().equals(user) && ac[i].getPasswords().equals(pass))
+			if(ac.elementAt(i).getUsername().equals(user) && ac.elementAt(i).getPasswords().equals(pass))
 				return true;
 		}
 		return false;
 	}
 	public void print() {
-		for(int i = 0; i<4; i++) {
-			ac[i].print();
+		for(Account i:ac) {
+			i.print();
 		}
+	}
+	public Account elementAt(int i) {
+		return ac.elementAt(i);
 	}
 }
