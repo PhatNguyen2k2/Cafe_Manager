@@ -137,4 +137,7 @@ public class Employees {
 		return v.elementAt(i);
 		
 	}
+	public int size() {
+		return v.size();
+	}
 }

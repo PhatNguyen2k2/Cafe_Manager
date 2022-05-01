@@ -28,6 +28,7 @@ public class Accounts {
 				Account a = new Account();
 				a.setUsername(result.getString("username"));
 				a.setPasswords(result.getString("passwords"));
+				a.setMother(result.getString("motherName"));
 				a.setE_id(result.getString("E_id"));
 				ac.add(a);
 			}
@@ -61,10 +62,19 @@ public class Accounts {
 		}
 		return false;
 	}
-	public void print() {
-		for(Account i:ac) {
-			i.print();
+	public boolean checkMother(String user, String name) {
+		for(int i = 0; i < 4; i++) {
+			if(ac.elementAt(i).getUsername().equals(user) && ac.elementAt(i).getMother().equals(name))
+				return true;
 		}
+		return false;
+	}
+	public String getPass(String user) {
+		for(int i = 0; i < 4; i++) {
+			if(ac.elementAt(i).getUsername().equals(user))
+				return ac.elementAt(i).getPasswords();
+		}
+		return "";
 	}
 	public Account elementAt(int i) {
 		return ac.elementAt(i);

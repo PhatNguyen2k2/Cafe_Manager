@@ -82,6 +82,22 @@ public class Employee extends MapPerson{
 		position = sc.next();
 		manager = sc.next();
 	}
+	public static boolean timeTest(int day, int month, int year){
+	    if (year<0 || month<0 || month> 12 || day<0 || day> 31) return false;
+	    if(month==1 || month ==3 || month == 5 || month ==7 || month ==8 || month ==10 || month==12){
+	        if(day <= 31) return true;
+	    }
+	    if(month==4 || month ==6 || month == 9 || month ==11){
+	        if(day <= 30) return true;
+	    }  
+	    if(year %4 ==0 && year !=0){
+	        if(day <= 29) return true;
+	    }  
+	    else{
+	        if(day <= 28) return true;
+	    }
+	    return false;
+	}
 	public void print() {
 		super.print();
 		System.out.println("Working hour: "+working_hour+", Bonus: "+bonus+", Minus: "+minus+", Coefficients: "+coefficients+", Salary: "+salary+", Experience: "+experience+", Position: "+position+", Manager: "+manager);
