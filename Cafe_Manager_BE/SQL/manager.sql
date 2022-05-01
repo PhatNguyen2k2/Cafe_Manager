@@ -29,6 +29,7 @@ CREATE TABLE MANAGER(
 CREATE TABLE ACCOUNT(
 	username VARCHAR(20),
 	passwords VARCHAR(20) NOT NULL,
+	motherName VARCHAR(30),
 	E_id VARCHAR(10) NOT NULL
 )
 CREATE TABLE CUSTOMER(
@@ -132,10 +133,10 @@ INSERT INTO MANAGER VALUES
 ('014','Nguyen Ngoc To','My'),
 ('018','Nguyen Hai','Duong')
 INSERT INTO ACCOUNT VALUES
-('mn004','buithiMien@', '004'),
-('mn010','huyenngocTran@', '010'),
-('mn014','nguyenngoctoMy@', '014'),
-('mn018','nguyenhaiDuong@', '018')
+('mn004','buithiMien@', 'Tran Thi Thu Huong','004'),
+('mn010','huyenngocTran@', 'Nguyen Thi Vuong','010'),
+('mn014','nguyenngoctoMy@', 'Dao Cam Thi','014'),
+('mn018','nguyenhaiDuong@', 'Vuong Thi Hong','018')
 INSERT INTO DRINKS VALUES
 ('001','001'),
 ('001','002'),
@@ -184,10 +185,11 @@ DELETE FROM CUSTOMER
 DELETE FROM DRINKS
 DELETE FROM MANAGER
 --UPDATE TABLE
-UPDATE CUSTOMER SET surname=?,name =?,gender=?,Bday=?,Bmonth=?,Byear=?,Caddress=?,point=?,member=?,phone=? WHERE C_id = '001'
+--UPDATE CUSTOMER SET surname=?,name =?,gender=?,Bday=?,Bmonth=?,Byear=?,Caddress=?,point=?,member=?,phone=? WHERE C_id = '001'
 --DROP TABLE
 DROP TABLE EMPLOYEE
 DROP TABLE MANAGER
+DROP TABLE ACCOUNT
 DROP TABLE CUSTOMER
 DROP TABLE INGREDIENT
 DROP TABLE MENU

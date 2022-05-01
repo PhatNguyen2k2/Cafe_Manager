@@ -108,8 +108,36 @@ public class Customers {
 			s.elementAt(i).print();
 		}
 	}
-	public static Customer printSQL(String phone) {//read data from sql
-		s.clear();
+	public void getData() {//get data from sql
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+		Connection cn;
+		try {
+			cn = DriverManager.getConnection(url);
+			String sql = "SELECT * FROM CUSTOMER";
+			Statement st = cn.createStatement();
+			ResultSet result = st.executeQuery(sql);
+			while(result.next()) {
+				Customer c = new Customer();
+				c.setId(result.getString("C_id"));
+				c.setSurname(result.getString("surname"));
+				c.setName(result.getString("name"));
+				c.setGender(result.getString("gender"));
+				c.setDay(result.getInt("Bday"));
+				c.setMonth(result.getInt("Bmonth"));
+				c.setYear(result.getInt("Byear"));
+				c.setAddress(result.getString("Caddress"));
+				c.setPoint(result.getInt("point"));
+				c.setMember(result.getString("member"));
+				c.setPhone(result.getString("phone"));
+				s.add(c);
+			}
+			cn.close();
+		} catch (SQLException e) {
+			System.out.println("Oh no");
+			e.printStackTrace();
+		}
+	}
+	public static Customer printSQL(String phone) {//find customer has "phone"
 		Customer c = new Customer();
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
@@ -132,7 +160,6 @@ public class Customers {
 				EmployeeTB.memberM = result.getString("member");
 				c.setMember(EmployeeTB.memberM);
 				c.setPhone(result.getString("phone"));
-				s.push(c);
 			}
 			cn.close();
 		} catch (SQLException e) {
@@ -212,5 +239,8 @@ public class Customers {
 	}
 	public void push(Customer c) {
 		s.push(c);
+	}
+	public Iterator<Customer> iterator() {
+		return s.iterator();
 	}
 }

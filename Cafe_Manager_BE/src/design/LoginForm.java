@@ -260,9 +260,14 @@ public class LoginForm extends javax.swing.JFrame {
         if(a.check(username, password) && count < 3){
             JOptionPane.showMessageDialog(this, "Login successfully");
             usernameM = username;
-            new EmployeeTB().setVisible(true);
-            //new Test().setVisible(true);
-            this.setVisible(false);
+            if(usernameM.equals("mn004")||usernameM.equals("mn010")) {
+            	new EmployeeTB().setVisible(true);
+                this.setVisible(false);
+            }else {
+            	new ManagerHome().setVisible(true);
+            	this.setVisible(false);
+            }
+            
         } else if (count != 3){
             JOptionPane.showMessageDialog(this, "Invalid username or password, denied " + count,"Failure",JOptionPane.ERROR_MESSAGE);
         } else {

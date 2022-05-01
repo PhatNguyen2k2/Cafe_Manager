@@ -110,11 +110,7 @@ public class Bill_v2 extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 80, -1, 20));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 54, 114, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
+        
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 82, 114, -1));
         jPanel1.add(lbDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 91, 20));
         jPanel1.add(lbTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 100, 20));
@@ -142,11 +138,6 @@ public class Bill_v2 extends javax.swing.JFrame {
         jLabel11.setText("Cashier:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 114, -1, -1));
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 113, 114, -1));
 
         OK.setIcon(new javax.swing.ImageIcon("D:/eclipse/Github/Cafe_Manager/Cafe_Manager_BE/src/design/Icon/icons8-ok-48.png")); // NOI18N
@@ -194,14 +185,6 @@ public class Bill_v2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
     	if(!EmployeeTB.phoneC.equals("")) {
         BE.Customer c = new BE.Customer();
@@ -215,7 +198,8 @@ public class Bill_v2 extends javax.swing.JFrame {
     }//GEN-LAST:event_OKActionPerformed
 
     private void CustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomerActionPerformed
-        // TODO add your handling code here:
+        new register().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_CustomerActionPerformed
 
     /**
@@ -249,6 +233,8 @@ public class Bill_v2 extends javax.swing.JFrame {
     }
     public void priceInfo() {
     	float total = Bills.getTotal(EmployeeTB.Cid);
+    	if(total < 200000.0)
+    		EmployeeTB.discountM = 0;
     	float discount = EmployeeTB.discountM;
     	jTextField3.setText(String.valueOf(total));
     	jTextField4.setText(String.valueOf(discount*100)+"%");

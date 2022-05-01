@@ -41,6 +41,5 @@ public class Program {
 //		b.print();
 		Accounts ac = new Accounts();
 		ac.printSQL("mn004");
-		ac.print();
 	}
 }

@@ -322,8 +322,12 @@ public class EmployeeTB extends javax.swing.JFrame {
     	Drinks_Orders.writeSQL();
     	Bills.writeSQL(Bid,Cid,Eid);
     	phoneC = textField.getText();
-    	Customers.printSQL(phoneC);
-    	discountM = Customer.checkMember(memberM);
+    	if(phoneC.equals("")) {
+    		discountM = 0;
+    	}else{
+    		Customers.printSQL(phoneC);
+    		discountM = Customer.checkMember(memberM);
+    	}
     	new Bill_v2().setVisible(true);
     	this.setVisible(false);
     }//GEN-LAST:event_btnOrderActionPerformed
