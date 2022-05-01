@@ -113,7 +113,7 @@ public class Customers {
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);
-			String sql = "SELECT * FROM CUSTOMER";
+			String sql = "SELECT * FROM CUSTOMER WHERE name IS NOT NULL";
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			while(result.next()) {
