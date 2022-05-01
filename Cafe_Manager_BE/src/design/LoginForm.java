@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import plurality.Accounts;
 
 
+@SuppressWarnings("serial")
 public class LoginForm extends javax.swing.JFrame {
 	public static String usernameM;
     /**
