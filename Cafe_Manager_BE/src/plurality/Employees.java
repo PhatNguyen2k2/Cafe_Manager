@@ -53,38 +53,36 @@ public class Employees {
 			e.printStackTrace();
 		}
 	}
-	public void writeSQL() {//write data into sql
+	public static void writeSQL(Employee em) {//write data into sql
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);
 			System.out.print("connect success\n");
-			for(int i = 0; i < v.size(); i++) {
 			String sql = "INSERT INTO EMPLOYEE VALUES"
 					+"(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement st = cn.prepareStatement(sql);
-			st.setString(1, v.elementAt(i).getId());
-			st.setString(2, v.elementAt(i).getSurname());
-			st.setString(3, v.elementAt(i).getName());
-			st.setString(4, v.elementAt(i).getGender());
-			st.setInt(5, v.elementAt(i).getDay());
-			st.setInt(6, v.elementAt(i).getMonth());
-			st.setInt(7, v.elementAt(i).getYear());
-			st.setString(8, v.elementAt(i).getAddress());
-			st.setString(9, v.elementAt(i).getPhone());
-			st.setInt(10, v.elementAt(i).getWorking_hour());
-			st.setFloat(11, v.elementAt(i).getBonus());
-			st.setFloat(12, v.elementAt(i).getMinus());
-			st.setFloat(13, v.elementAt(i).getCoefficients());
-			st.setFloat(14, v.elementAt(i).getSalary());
-			st.setFloat(15, v.elementAt(i).getExperience());
-			st.setString(16, v.elementAt(i).getPosition());
-			st.setString(17, v.elementAt(i).getManager());
+			st.setString(1, em.getId());
+			st.setString(2, em.getSurname());
+			st.setString(3, em.getName());
+			st.setString(4, em.getGender());
+			st.setInt(5, em.getDay());
+			st.setInt(6, em.getMonth());
+			st.setInt(7, em.getYear());
+			st.setString(8, em.getAddress());
+			st.setString(9, em.getPhone());
+			st.setInt(10, em.getWorking_hour());
+			st.setFloat(11, em.getBonus());
+			st.setFloat(12, em.getMinus());
+			st.setFloat(13, em.getCoefficients());
+			st.setFloat(14, em.getSalary());
+			st.setFloat(15, em.getExperience());
+			st.setString(16, em.getPosition());
+			st.setString(17, em.getManager());
 			int rows = st.executeUpdate();
 				if(rows > 0) {
 					System.out.print("row has been inserted\n");
 				}
-			}
 			cn.close();
 		} catch (SQLException e) {
 			System.out.print("oh no.");
@@ -97,13 +95,13 @@ public class Employees {
 			v.elementAt(i).print();
 		}
 	}
-	public void printSQL() {//read data from sql
+	public void printSQL(String p) {//read data from sql
 		v.clear();
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);
-			String sql = "SELECT * FROM EMPLOYEE";
+			String sql = "SELECT * FROM EMPLOYEE "+p;
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			while(result.next()) {
@@ -132,6 +130,93 @@ public class Employees {
 			System.out.println("Oh no");
 			e.printStackTrace();
 		}
+	}
+	public static String getBottomId() {
+		String id = "";
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+		Connection cn;
+		try {
+			cn = DriverManager.getConnection(url);
+			String sql = "SELECT TOP 1 E_id FROM EMPLOYEE ORDER BY E_id DESC";
+			Statement st = cn.createStatement();
+			ResultSet result = st.executeQuery(sql);
+			while(result.next()) {
+				id = result.getString("E_id");
+			}
+			cn.close();
+		} catch (SQLException e) {
+			System.out.println("Oh no");
+			e.printStackTrace();
+		}
+		return id;
+	}
+	public static String findId(String id) {
+		String rs = "";
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+		Connection cn;
+		try {
+			cn = DriverManager.getConnection(url);
+			String sql = "SELECT E_id FROM EMPLOYEE WHERE E_id = "+id;
+			Statement st = cn.createStatement();
+			ResultSet result = st.executeQuery(sql);
+			while(result.next()) {
+				rs = result.getString("E_id");
+			}
+			cn.close();
+		} catch (SQLException e) {
+			System.out.println("Oh no");
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	public static void deleteEmployee(String id) {
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+		Connection cn;
+		try {
+			cn = DriverManager.getConnection(url);
+			String sql = "DELETE FROM EMPLOYEE WHERE E_id = "+id;
+			PreparedStatement st = cn.prepareStatement(sql);
+			int rows = st.executeUpdate();
+			if(rows > 0) {
+				System.out.print("row has been deleted\n");
+			}
+			cn.close();
+		} catch (SQLException e) {
+			System.out.print("oh no.");
+			e.printStackTrace();
+		}
+	}
+	public static void updateEmployee(String id, Employee em) {
+		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
+		Connection cn;
+			try {
+				cn = DriverManager.getConnection(url);
+				String sql = "UPDATE EMPLOYEE SET surname=?,name =?,gender=?,Bday=?,Bmonth=?,Byear=?,Eaddress=?,phone=?,working_hour=?,bonus=?,minus=?,coefficients=?,salary=?,experience=?,position=? WHERE E_id = '"+id+"'";
+				PreparedStatement st = cn.prepareStatement(sql);
+				st.setString(1, em.getSurname());
+				st.setString(2, em.getName());
+				st.setString(3, em.getGender());
+				st.setInt(4, em.getDay());
+				st.setInt(5, em.getMonth());
+				st.setInt(6, em.getYear());
+				st.setString(7, em.getAddress());
+				st.setString(8, em.getPhone());
+				st.setInt(9, em.getWorking_hour());
+				st.setFloat(10, em.getBonus());
+				st.setFloat(11, em.getMinus());
+				st.setFloat(12, em.getCoefficients());
+				st.setFloat(13, em.getSalary());
+				st.setFloat(14, em.getExperience());
+				st.setString(15, em.getPosition());
+				int rows = st.executeUpdate();
+				if(rows > 0) {
+					System.out.print("row has been updated\n");
+				}
+				cn.close();
+			} catch (SQLException e) {
+				System.out.print("oh no.");
+				e.printStackTrace();
+			}
 	}
 	public Employee elementAt(int i) {
 		return v.elementAt(i);

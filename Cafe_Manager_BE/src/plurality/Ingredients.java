@@ -84,14 +84,13 @@ public class Ingredients {
 			i++;
 		}
 	}
-	public void printSQL() {//read data from sql
+	public void printSQL(String p) {//read data from sql
 		q.clear();
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);
-			String sql = "SELECT * FROM INGREDIENT";
-			
+			String sql = "SELECT * FROM INGREDIENT "+p;
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			while(result.next()) {

@@ -1,45 +1,33 @@
 package main;
 
-import plurality.Accounts;
-import plurality.Bills;
-import plurality.Customers;
-import plurality.Drinks_Orders;
-import plurality.Employees;
-import plurality.Ingredients;
-import plurality.Menu;
+import design.LoginForm;
 
 public class Program {
 
 	public static void main(String[] args) {
-//		Employees e = new Employees();
-//		e.read();
-//		e.writeSQL();
-//		e.printSQL();
-//		e.print();
-//		Customers c = new Customers();
-//		c.read();
-//		c.writeSQL();
-//		c.printSQL();
-//		c.print();
-//		Ingredients i = new Ingredients();
-//		i.read();
-//		i.writeSQL();
-//		i.printSQL();
-//		i.print();
-//		Menu m = new Menu();
-//		m.read();
-//		m.writeSQL();
-//		m.printSQL();
-//		m.print();
-//		Drinks_Orders d = new Drinks_Orders();
-//		d.read();
-//		d.writeSQL();
-//		Bills b = new Bills();
-//		b.read();
-//		b.writeSQL();
-//		b.printSQL();
-//		b.print();
-		Accounts ac = new Accounts();
-		ac.printSQL("mn004");
+		try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginForm().setVisible(true);
+            }
+        });
 	}
 }

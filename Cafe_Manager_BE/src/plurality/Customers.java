@@ -108,12 +108,12 @@ public class Customers {
 			s.elementAt(i).print();
 		}
 	}
-	public void getData() {//get data from sql
+	public void getData(String p) {//get data from sql
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
 		Connection cn;
 		try {
 			cn = DriverManager.getConnection(url);
-			String sql = "SELECT * FROM CUSTOMER WHERE name IS NOT NULL";
+			String sql = "SELECT * FROM CUSTOMER "+p;
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			while(result.next()) {
@@ -195,29 +195,7 @@ public class Customers {
 				e.printStackTrace();
 			}
 	}
-//	public static String getBottomPhone(String phone) {
-//		if(phone.equals("")) {
-//			return "NULL";
-//		}
-//		String member = "";
-//		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";
-//		Connection cn;
-//		try {
-//			cn = DriverManager.getConnection(url);
-//			String sql = "SELECT TOP 1 member FROM CUSTOMER WHERE phone = '"+phone+"' ORDER BY C_id DESC";
-//			Statement st = cn.createStatement();
-//			ResultSet result = st.executeQuery(sql);
-//			while(result.next()) {
-//				member = result.getString("member");
-//			}
-//			cn.close();
-//		} catch (SQLException e) {
-//			System.out.println("Oh no");
-//			e.printStackTrace();
-//		}
-//		return member;
-//	}
-	
+
 	public String getBottomId() { //get bottom id from sql
 		String id = "";
 		String url = "jdbc:sqlserver://FAT\\SQLEXPRESS:1433;databaseName=CAFE_MANAGER;user=sa;password=phat12112002;encrypt=false";

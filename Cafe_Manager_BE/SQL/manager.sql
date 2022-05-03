@@ -173,6 +173,8 @@ INSERT INTO DRINKS VALUES
 ('021','004')
 INSERT INTO CUSTOMER(C_id)VALUES
 ('031')
+INSERT INTO EMPLOYEE(E_id,gender)VALUES
+('020','male')
 --DELETE ROW
 DELETE FROM EMPLOYEE
 DELETE FROM BILL
@@ -186,6 +188,7 @@ DELETE FROM DRINKS
 DELETE FROM MANAGER
 --UPDATE TABLE
 --UPDATE CUSTOMER SET surname=?,name =?,gender=?,Bday=?,Bmonth=?,Byear=?,Caddress=?,point=?,member=?,phone=? WHERE C_id = '001'
+--UPDATE EMPLOYEE SET surname=?,name =?,gender=?,Bday=?,Bmonth=?,Byear=?,Eaddress=?,phone=?,working_hour=?,bonus=?,minus=?,coefficients=?,salary=?,experient=?,position=? WHERE E_id = '001'
 --DROP TABLE
 DROP TABLE EMPLOYEE
 DROP TABLE MANAGER
@@ -200,7 +203,7 @@ DROP TABLE BILLSHIP
 --QUERY
 SELECT E_id,surname, name, gender, CONCAT(Bday,'/',Bmonth,'/',Byear) AS Birthday, Eaddress, phone, working_hour, bonus, minus, ROUND(coefficients,2) AS coefficients, salary, experience, position, manager
 FROM EMPLOYEE;
-SELECT * FROM EMPLOYEE
+SELECT * FROM EMPLOYEE WHERE E_id = '020'
 ORDER BY salary ASC;
 SELECT * FROM EMPLOYEE
 WHERE Eaddress LIKE 'district%'
@@ -209,7 +212,7 @@ WHERE Caddress LIKE 'district%'
 ORDER BY salary ASC
 SELECT * FROM MANAGER
 SELECT * FROM ACCOUNT
-SELECT * FROM CUSTOMER WHERE name IS NOT NULL
+SELECT * FROM CUSTOMER
 SELECT * FROM INGREDIENT
 SELECT * FROM MENU
 SELECT * FROM DRINKS
@@ -229,19 +232,17 @@ ON E.manager = M.E_id
 WHERE M.name = 'Tran' OR M.name = 'Duong'
 ORDER BY E.name ASC
 --CUSTOMER
-SELECT C_id, surname, name, point, member
-FROM CUSTOMER
-WHERE point >= 100
-ORDER BY name,surname ASC
-
-SELECT C_id, surname, name, point, member
-FROM CUSTOMER
-WHERE point < 100
-ORDER BY name,surname ASC
+SELECT * FROM CUSTOMER
+WHERE point >= 100 AND name IS NOT NULL
+ORDER BY name, surname ASC
 
 SELECT * FROM CUSTOMER
-WHERE Caddress LIKE '%Ho Chi Minh city' AND point >= 100
-ORDER BY name,surname ASC
+WHERE member = 'gold' AND name IS NOT NULL
+ORDER BY name, surname ASC
+
+SELECT * FROM CUSTOMER
+WHERE Caddress LIKE '%Ho Chi Minh city' AND name IS NOT NULL
+ORDER BY name, surname ASC
 
 SELECT TOP 1 C_id
 FROM CUSTOMER
@@ -273,7 +274,7 @@ SELECT DISTINCT D1.M_id, M.name, (
 		ON D3.I_id = I.I_id 
 		WHERE D3.M_id = D1.M_id 
 		ORDER BY D3.M_id 
-		FOR XML PATH(''))[I.name] 
+		FOR XML PATH(''))[I_name] 
 FROM DRINKS D1 INNER JOIN MENU M 
 ON D1.M_id = M.M_id
 --MENU
