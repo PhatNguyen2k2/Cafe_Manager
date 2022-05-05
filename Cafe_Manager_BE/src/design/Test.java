@@ -1,24 +1,42 @@
-
 package design;
 
-import javax.swing.GroupLayout;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import BE.Customer;
+import BE.Employee;
+import plurality.Accounts;
+import plurality.Bills;
+import plurality.Customers;
+
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import plurality.Accounts;
-
-
-@SuppressWarnings("serial")
-public class LoginForm extends javax.swing.JFrame {
+public class Test extends JFrame {
 	public static String usernameM;
 
     int count = 1; //limit the attempt login 
-    public LoginForm() {
+    public Test() {
         initComponents();
-        
+        //method get time and date 
     }
-
     @SuppressWarnings("unchecked")
     private void initComponents() {
 

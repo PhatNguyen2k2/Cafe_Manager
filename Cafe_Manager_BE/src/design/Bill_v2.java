@@ -115,23 +115,24 @@ public class Bill_v2 extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 420, 290));
 
-        jLabel9.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel9.setFont(new Font("Segoe UI", Font.BOLD, 14)); // NOI18N
         jLabel9.setText("Customer:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 54, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("DejaVu Sans", Font.BOLD, 14)); // NOI18N
         jLabel11.setText("Cashier:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 114, -1, -1));
 
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 113, 114, -1));
 
-        OK.setIcon(new javax.swing.ImageIcon("D:/eclipse/Github/Cafe_Manager/Cafe_Manager_BE/src/design/Icon/icons8-ok-48.png")); // NOI18N
+        //OK.setIcon(new javax.swing.ImageIcon("D:/eclipse/Github/Cafe_Manager/Cafe_Manager_BE/src/design/Icon/icons8-ok-48.png")); // NOI18N
+        OK.setText("Print");
         OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OKActionPerformed(evt);
             }
         });
-        jPanel1.add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 560, -1, 32));
+        jPanel1.add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 560, 100, 32));
 
         jLabel6.setIcon(new javax.swing.ImageIcon("D:/eclipse/Github/Cafe_Manager/Cafe_Manager_BE/src/design/Icon/icons8-iced-coffee-30.png")); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
@@ -141,19 +142,20 @@ public class Bill_v2 extends javax.swing.JFrame {
 
         Total.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Total.setText("Total:");
-        jPanel1.add(Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, -1, 20));
+        jPanel1.add(Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, 20));
 
         Discount.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Discount.setText("Discount:");
         jPanel1.add(Discount, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, -1, -1));
 
-        Customer.setIcon(new javax.swing.ImageIcon("D:/eclipse/Github/Cafe_Manager/Cafe_Manager_BE/src/design/Icon/icons8-customer-48.png")); // NOI18N
+        //Customer.setIcon(new javax.swing.ImageIcon("D:/eclipse/Github/Cafe_Manager/Cafe_Manager_BE/src/design/Icon/icons8-customer-48.png")); // NOI18N
+        Customer.setText("Register");
         Customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CustomerActionPerformed(evt);
             }
         });
-        jPanel1.add(Customer, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, -1, 32));
+        jPanel1.add(Customer, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 560, 100, 32));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -45,7 +45,8 @@ public class register extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(162, 124, 86));
         jPanel1.setForeground(new java.awt.Color(162, 124, 86));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
+        
+        
         textTille.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         textTille.setText("Register Customer");
         jPanel1.add(textTille, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 24, -1, -1));
@@ -60,7 +61,7 @@ public class register extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setText("Name:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 248, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("Gender:");
@@ -80,42 +81,42 @@ public class register extends javax.swing.JFrame {
 
         jTextID.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jPanel1.add(jTextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 41, -1));
+        jPanel1.add(jTextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 80, -1));
 
         jTextSurname.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jPanel1.add(jTextSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 93, -1));
+        jPanel1.add(jTextSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 120, -1));
 
         jTextName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jPanel1.add(jTextName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 85, -1));
+        jPanel1.add(jTextName, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 240, 85, -1));
 
         jTextGender.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jPanel1.add(jTextGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 80, -1));
+        jPanel1.add(jTextGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 80, -1));
 
         jTextDay.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jPanel1.add(jTextDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 34, -1));
+        jPanel1.add(jTextDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 34, -1));
 
         jTextMonth.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jPanel1.add(jTextMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 36, -1));
+        jPanel1.add(jTextMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 36, -1));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel8.setText("/");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 10, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 10, 30));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel9.setText("/");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 10, 30));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 10, 30));
 
         jTextYear.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jPanel1.add(jTextYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 52, -1));
+        jPanel1.add(jTextYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 52, -1));
 
         jTextAddress.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jPanel1.add(jTextAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 290, -1));
+        jPanel1.add(jTextAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 290, -1));
 
         jTextPhone.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
@@ -132,7 +133,7 @@ public class register extends javax.swing.JFrame {
                 jButtonAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
+        jPanel1.add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 100, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -155,7 +156,7 @@ public class register extends javax.swing.JFrame {
         //action for resigter
     	String surname = jTextSurname.getText();
     	String name = jTextName.getText();
-    	String gender = jTextGender.getText();
+    	String gender = jTextGender.getText().toLowerCase();
     	String address = jTextAddress.getText();
     	String phone = jTextPhone.getText();
     	Customer s = new Customer();
@@ -165,6 +166,9 @@ public class register extends javax.swing.JFrame {
     		sb.append("Answer is empty\n");
     	else if(phone.charAt(0) != '0' || phone.length()>11 || phone.length()<10)
     		sb.append("Invalid phone number!\n");
+    	else if(!gender.equals("female")&&!gender.equals("male"))
+    		sb.append("Invalid gender!\n");
+    	//TODO: check gender
     	else if(phone.equals(s.getPhone()))
     		sb.append("This customer is already a member!\n");
     	if(sb.length()>0){
