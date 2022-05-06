@@ -1,1 +1,1 @@
-# Controller package
+# Model package
