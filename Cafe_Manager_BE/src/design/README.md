@@ -1,1 +1,1 @@
-# View package
+# View + controller package
