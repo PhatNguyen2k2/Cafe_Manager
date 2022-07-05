@@ -1,4 +1,4 @@
-# Cafe_Manager (Phat Nguyen branch 🐱)
+# Cafe_Manager
 ![coffee](https://img.shields.io/badge/coffee-let's%20drink-orange) ![java](https://img.shields.io/badge/java-debug%20%3A%3E-blue) ![sql](https://img.shields.io/badge/sql-manager%20%3Ao-green)
 ### A java big exercise 👨‍💻👨‍💻
 ## Enjoy ☕☕
